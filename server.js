@@ -256,16 +256,16 @@ function parseMQTTMessage (topic, message) {
         topicSwitchState = getTopicFor(device, 'switch', TOPIC_READ_STATE),
         topicLevelCommand = getTopicFor(device, 'level', TOPIC_COMMAND);
 
-    if (history[topicWriteState] === contents) {
-        history[topicReadState] = contents;
-        winston.info('Skipping duplicate message from: %s = %s', topic, contents);
-        return;
-    }
-    if (history[topicReadState] === contents) {
-        history[topicWriteState] = contents;
-        winston.info('Skipping duplicate message from: %s = %s', topic, contents);
-        return;
-    }
+    // if (history[topicWriteState] === contents) {
+    //     history[topicReadState] = contents;
+    //     winston.info('Skipping duplicate message from: %s = %s', topic, contents);
+    //     return;
+    // }
+    // if (history[topicReadState] === contents) {
+    //     history[topicWriteState] = contents;
+    //     winston.info('Skipping duplicate message from: %s = %s', topic, contents);
+    //     return;
+    // }
     history[topic] = contents;
 
     // If sending level data and the switch is off, don't send anything
